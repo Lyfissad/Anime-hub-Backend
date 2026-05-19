@@ -1,6 +1,10 @@
-import express, { response } from "express"
+import express from "express"
 
-app.post("/api/anilist", async(req, res) => {
+
+
+const router = express.Router();
+
+router.post("/anilist", async(req, res) => {
     try{
         const response = await fetch("https://graphql.anilist.co", {
             method: "POST",
@@ -23,3 +27,4 @@ app.post("/api/anilist", async(req, res) => {
 
 });
 
+export default router

@@ -4,6 +4,8 @@ import dotenv from "dotenv";
 import cors from "cors";
 import signUpRoute from "./Routes/SignUp.js";
 import loginRoute from "./Routes/Login.js";
+import anilistRoute from "./Api/Anilist.js"
+
 
 dotenv.config();
 
@@ -26,6 +28,9 @@ app.get("/", (req, res) => {
 
 app.use("/api", signUpRoute);
 app.use("/api", loginRoute);
+app.use("/api", anilistRoute);
+
+
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
