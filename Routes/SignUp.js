@@ -7,7 +7,7 @@ import User from "../models/Users.js"
 
 router.post("/signup", async (req, res)=>{
         try{
-            const {username, email, password, preferences} = req.body
+            const {username, email, password, list} = req.body
         
         const existingUser = await User.findOne({$or: [{username}, {email}]});
         
@@ -23,7 +23,7 @@ router.post("/signup", async (req, res)=>{
             username,
             email,
             password: hashedPassword,
-            preferences
+            list
         });
 
         await newUser.save();
@@ -32,7 +32,7 @@ router.post("/signup", async (req, res)=>{
 
         }catch(err){
             console.log("Error in creating User:", err.message);
-            res.status(500).json({message: "server error"});
+            res.status(500).json({message: "server error: " + err.message});
 
         }
 
